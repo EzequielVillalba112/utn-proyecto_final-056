@@ -1,18 +1,88 @@
-export default function CreateTask() {
+import React, { useState } from 'react';
+
+const CreateTask = ({ enviarTareaALista }) => {
+
+  const [tarea, setTarea] = useState({
+    nombre: '',
+    fechaInicio: '',
+    fechaFin: '',
+    descripcion: ''
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setTarea({ ...tarea,[name]: value});
+  };
+
+  const handleEnviarTarea = (event) => {
+    console.log("enviando")
+    event.preventDefault();
+    if (tarea.nombre.trim() !== '') {
+      enviarTareaALista(tarea);
+      setTarea({
+        nombre: '',
+        fechaInicio: '',
+        fechaFin: '',
+        descripcion: ''
+      });
+    }
+  };
+
   return (
-    <form>
-      <div className="mb-3">
-        <label htmlFor="campoNuevaTarea" className="form-label fs-2 fw-bold">
-          Nueva tarea
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="campoNuevaTarea"
-          placeholder="Título de la tarea"
-        />
-      </div>
-      <button className="btn btn-primary">Agregar a la lista</button>
-    </form>
+    <div className="row justify-content-center d-flex">
+      <h3 className="text-center">Crear Tarea</h3>
+      <form onSubmit={handleEnviarTarea}>
+        <div className="row justify-content-center d-flex">
+          <div className="mb-3">
+          <label className="form-label" htmlFor="titulo_tarea">Titulo</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Titulo de la tarea"
+              name="nombre"
+              value={tarea.nombre}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <div className="row justify-content-center d-flex">
+          <div className="mb-3">
+          <label className="form-label" htmlFor="descripcion_tarea">Descricpion</label>
+            <textarea
+              className="form-control"
+              placeholder="Descripcion de la tarea"
+              id="descripcion_tarea"
+              name="descripcion"
+              value={tarea.descripcion}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <div className="row justify-content-center d-flex">
+          <div className="col mb-3 input-group">
+            <input
+              type="datetime-local"
+              className="form-control"
+              name="fechaInicio"
+              value={tarea.fechaInicio}
+              onChange={handleInputChange}
+            />
+            <span className="input-group-text">Hasta</span>
+            <input
+              type="datetime-local"
+              className="form-control"
+              name="fechaFin"
+              value={tarea.fechaFin}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+        <button className="btn btn-primary" type="submit">
+          Agregar a la lista
+        </button>
+      </form>
+    </div>
   );
-}
+};
+
+export default CreateTask;
