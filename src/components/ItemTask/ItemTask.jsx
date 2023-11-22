@@ -22,7 +22,7 @@ const ItemTask = ({ tarea, index }) => {
         <td name="hasta-cell"><p>{tarea.fechaFin}</p></td>
         <td name="descripcion-cell"><p>{tarea.descripcion}</p></td>
         <td name="estado-cell">
-          <p>estado actual</p>
+          <p>{tarea.estado}</p>
         </td>
         <td name="action-cell">
             <p>Agregar botones</p>

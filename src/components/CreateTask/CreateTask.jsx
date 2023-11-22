@@ -6,7 +6,8 @@ const CreateTask = ({ enviarTareaALista }) => {
     nombre: '',
     fechaInicio: '',
     fechaFin: '',
-    descripcion: ''
+    descripcion: '',
+    estado: 'Pendiente'
   });
 
   const handleInputChange = (event) => {
@@ -17,7 +18,7 @@ const CreateTask = ({ enviarTareaALista }) => {
   const handleEnviarTarea = (event) => {
     console.log("enviando")
     event.preventDefault();
-    if (tarea.nombre.trim() !== '') {
+    if (tarea.nombre.trim() !== '' && check_dates(tarea.fechaInicio,tarea.fechaFin)) {
       enviarTareaALista(tarea);
       setTarea({
         nombre: '',
@@ -27,6 +28,12 @@ const CreateTask = ({ enviarTareaALista }) => {
       });
     }
   };
+
+  function check_dates(fechaA, fechaB) {
+    const dateA = new Date(fechaA);
+    const dateB = new Date(fechaB);
+    return dateA < dateB && dateB < new Date();
+  }
 
   return (
     <div className="row justify-content-center d-flex">

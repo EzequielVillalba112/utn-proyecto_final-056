@@ -19,8 +19,6 @@ const App = () => {
     setTareas([...tareas, nuevaTarea]);
   };
 
-  console.log('Tareas en App:', tareas)
-
   return (
     <div className="container">
       <div className="mx-auto col-lg-6 col-12 p-2">
