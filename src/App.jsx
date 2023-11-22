@@ -1,34 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useEffect, useState } from 'react';
+
+import CreateTask from "./components/CreateTask/CreateTask"
+import DemoInterfaz from "./components/DemoInterfaz"
+import ListTask from "./components/ListTask/ListTask"
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+/*
+<CreateTask enviarTareaALista={enviarTareaALista} />
+<ListTask tareas={tareas} />
+*/
 
+
+const App = () => {
+  const [tareas, setTareas] = useState([]);
+  
+    // Función para agregar la tarea a la lista de tareas
+  const enviarTareaALista = (nuevaTarea) => {
+    setTareas([...tareas, nuevaTarea]);
+  };
+
+  //Local Storage: 
+  console.log(tareas);
+  useEffect(()=>{
+    let data = localStorage.getItem("list-Tasks");
+
+    if(data) {
+      setTareas(JSON.parse(data));
+    }
+
+  },[]);
+
+  useEffect(()=>{
+    localStorage.setItem("list-Tasks", JSON.stringify(tareas));
+  }, [tareas]);
+  ////////
+  
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container">
+      <div className="mx-auto col-lg-6 col-12 p-2">
+        {/* Pasar la función handleRecibirTarea como prop */}
+        <CreateTask enviarTareaALista={enviarTareaALista}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="mx-auto col-12 p-2">
+        <ListTask tareas={tareas} />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
