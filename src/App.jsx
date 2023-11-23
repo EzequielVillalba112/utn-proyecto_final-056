@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import CreateTask from "./components/CreateTask/CreateTask"
-import DemoInterfaz from "./components/DemoInterfaz"
 import ListTask from "./components/ListTask/ListTask"
 import './App.css'
 import ListTaskComplete from './components/ListTaskComplete/ListTaskComplete';
+import "bootstrap/dist/css/bootstrap.css";
+import "../src/assets/css/demoInterfaz.css";
 
 const App = () => {
   const [tareas, setTareas] = useState([]);
