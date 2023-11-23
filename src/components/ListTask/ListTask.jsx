@@ -1,38 +1,40 @@
 import ItemTask from "../ItemTask/ItemTask";
 
-export default function ListTask() {
+const ListTask = ({ tareas, checkList, estate }) => { //agregar tareas traidas del local storage tareasdelocal
+
+  const list = (estad) => { 
+    return tareas
+      .filter((task)=> task.estado === estad)
+      .map((task, index) => (
+        <ItemTask key={index} tarea={task} index={task.nombre} taskCheck={checkList} />
+      ));
+  }
+
+
   return (
-    <div className="card p-0">
-            <div className="card-header">
-              <ul className="nav nav-pills card-header-pills">
-                <li className="nav-item form-check form-switch my-auto">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id="seleccionarTodo"
-                  />
-                  <label className="form-check-label" htmlFor="seleccionarTodo">
-                    Seleccionar todo
-                  </label>
-                </li>
-                <li className="nav-item ms-auto">
-                  <div className="btn-group" role="group">
-                    <button type="button" className="btn btn-success" disabled>
-                      Completar
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline-secondary"
-                      disabled
-                    >
-                      Borrar
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <ItemTask/>
-          </div>
-  )
-}
+    <div className="mx-auto col-12 p-2 bg-light rounded-2">
+      <div className="table-responsive p2">
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th >
+              
+              </th>
+              <th className="col text-start align-middle">Titulo</th>
+              <th className="col text-start align-middle">Desde</th>
+              <th className="col text-start align-middle">Hasta</th>
+              <th className="col text-start align-middle">Descripcion</th>
+              <th className="col text-start align-middle">Estado</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            {list(estate)}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default ListTask;

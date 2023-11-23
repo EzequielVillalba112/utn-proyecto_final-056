@@ -1,3 +1,8 @@
 body{
     background-color: #d3d3d3;
 }
+
+#descripcion_tarea{
+    height: 100px;
+}
+
