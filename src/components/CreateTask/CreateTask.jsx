@@ -3,6 +3,7 @@ import {ValidEmpty,CheckDates} from './Validation/Validation'
 
 const CreateTask = ({ enviarTareaALista }) => {
 
+  const [id, setId] = useState();
   const [tarea, setTarea] = useState({
     nombre: '',
     fechaInicio: '',
@@ -10,7 +11,7 @@ const CreateTask = ({ enviarTareaALista }) => {
     descripcion: '',
     estado: false
   });
-
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setTarea({ ...tarea,[name]: value});
@@ -24,6 +25,7 @@ const CreateTask = ({ enviarTareaALista }) => {
 
     if(valid == true && date == true) {
       enviarTareaALista(tarea);
+     
       setTarea({
         nombre: '',
         fechaInicio: '',

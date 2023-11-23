@@ -15,6 +15,7 @@ const App = () => {
     setTareas([...tareas, nuevaTarea]);
   };
 
+  console.log(tareas);
   //Local Storage: 
   useEffect(()=>{
     let data = localStorage.getItem("list-Tasks");
