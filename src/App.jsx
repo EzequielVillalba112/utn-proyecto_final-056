@@ -15,7 +15,7 @@ const App = () => {
     setTareas([...tareas, nuevaTarea]);
   };
 
-  console.log(tareas);
+
   //Local Storage: 
   useEffect(()=>{
     let data = localStorage.getItem("list-Tasks");
@@ -39,6 +39,11 @@ const App = () => {
     )
   }
 
+  const deleTask = () => {
+    setTareas(tareas.filter((tas) => !tas.estado));
+    setShowComplete(false);
+  }
+
   return (
     <div className="container">
       <div className="mx-auto col-lg-6 col-12 p-2">
@@ -49,7 +54,7 @@ const App = () => {
         <ListTask tareas={tareas}  checkList={checkList} estate={false}/>
       </div>
       <div className="mx-auto col-12 p-2 bg-light rounded-2">
-       <ListTaskComplete showComplete={showComplete} setShowComplete={setShowComplete}/>
+       <ListTaskComplete showComplete={showComplete} setShowComplete={setShowComplete} deleTask = {deleTask}/>
       
         {
           showComplete== true &&(

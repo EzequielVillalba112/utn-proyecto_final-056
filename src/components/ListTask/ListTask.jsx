@@ -5,8 +5,8 @@ const ListTask = ({ tareas, checkList, estate }) => { //agregar tareas traidas d
   const list = (estad) => { 
     return tareas
       .filter((task)=> task.estado === estad)
-      .map((task) => (
-        <ItemTask key={task.id} tarea={task} index={task.nombre} taskCheck={checkList} />
+      .map((task, index) => (
+        <ItemTask key={index} tarea={task} index={task.nombre} taskCheck={checkList} />
       ));
   }
 
