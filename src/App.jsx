@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import CreateTask from "./components/CreateTask/CreateTask"
 import DemoInterfaz from "./components/DemoInterfaz"
 import ListTask from "./components/ListTask/ListTask"
@@ -19,7 +18,7 @@ const App = () => {
   //Local Storage: 
   useEffect(()=>{
     let data = localStorage.getItem("list-Tasks");
-
+    
     if(data) {
       setTareas(JSON.parse(data));
     }
