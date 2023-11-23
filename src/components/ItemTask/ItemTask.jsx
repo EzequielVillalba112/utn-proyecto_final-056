@@ -1,8 +1,18 @@
-import React, { useState } from "react";
-
-const ItemTask = ({ tarea, index }) => {
+const ItemTask = ({ tarea, taskCheck }) => {
   return (
-    <tr>
+    <tr className="ps-2 ">
+      <th scope="row">
+          <p className='text-center'>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              checked={tarea.estado}
+              onChange={()=>{
+                taskCheck(tarea)
+              }}
+            />
+          </p>
+        </th>
       <td name="titulo-cell">
         <p>{tarea.nombre}</p>
       </td>
@@ -16,17 +26,9 @@ const ItemTask = ({ tarea, index }) => {
         <p>{tarea.descripcion}</p>
       </td>
       <td name="estado-cell">
-        <p>{tarea.estado}</p>
+        <p>{tarea.estado == true ? "Completo" : "Completar"}</p>
       </td>
-      <td name="action-cell">
-        {tarea.estado == "Pendiente" ? (
-          <button className="btn btn-success">
-            {tarea.estado == "Pendiente" ? "Completar" : "Completo"}
-          </button>
-        ) : (
-          "Completo"
-        )}
-      </td>
+      
     </tr>
   );
 };

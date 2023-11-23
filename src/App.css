@@ -5,3 +5,7 @@ body{
 #descripcion_tarea{
     height: 100px;
 }
+
+.sp{
+    width: 10px !important;
+}

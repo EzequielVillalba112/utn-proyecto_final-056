@@ -8,7 +8,7 @@ const CreateTask = ({ enviarTareaALista }) => {
     fechaInicio: '',
     fechaFin: '',
     descripcion: '',
-    estado: 'Pendiente'
+    estado: false
   });
 
   const handleInputChange = (event) => {
@@ -20,7 +20,7 @@ const CreateTask = ({ enviarTareaALista }) => {
     event.preventDefault();
 
     const valid = ValidEmpty(tarea.name, tarea.descripcion);
-    const date = CheckDates(tarea.fechaInicio,tarea.fechaFin);
+    const date = CheckDates(tarea.fechaInicio, tarea.fechaFin);
 
     if(valid == true && date == true) {
       enviarTareaALista(tarea);
@@ -29,14 +29,16 @@ const CreateTask = ({ enviarTareaALista }) => {
         fechaInicio: '',
         fechaFin: '',
         descripcion: '',
-        estado:'Pendiente'
+        estado:false
       });
     }
   };
 
   return (
     <div className="row justify-content-center d-flex">
-      <h3 className="text-center">Crear Tarea</h3>
+      <div className='mx-auto col-12 bg-light rounded-2'>
+        <h3 className="text-center">Crear Tarea</h3>
+      </div>
       <form onSubmit={handleEnviarTarea}>
         <div className="row justify-content-center d-flex">
           <div className="mb-3">
@@ -48,6 +50,7 @@ const CreateTask = ({ enviarTareaALista }) => {
               name="nombre"
               value={tarea.nombre}
               onChange={handleInputChange}
+              id="descripcion_titulo"
             />
           </div>
         </div>
@@ -67,19 +70,21 @@ const CreateTask = ({ enviarTareaALista }) => {
         <div className="row justify-content-center d-flex">
           <div className="col mb-3 input-group">
             <input
-              type="datetime-local"
+              type="date"
               className="form-control"
               name="fechaInicio"
               value={tarea.fechaInicio}
               onChange={handleInputChange}
+              id='date-start'
             />
             <span className="input-group-text">Hasta</span>
             <input
-              type="datetime-local"
+              type="date"
               className="form-control"
               name="fechaFin"
               value={tarea.fechaFin}
               onChange={handleInputChange}
+              id='date-end'
             />
           </div>
         </div>
