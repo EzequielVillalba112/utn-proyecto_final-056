@@ -3,7 +3,6 @@ import {ValidEmpty,CheckDates} from './Validation/Validation'
 
 const CreateTask = ({ enviarTareaALista }) => {
 
-  const [id, setId] = useState();
   const [tarea, setTarea] = useState({
     nombre: '',
     fechaInicio: '',

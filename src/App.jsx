@@ -10,20 +10,17 @@ const App = () => {
   const [tareas, setTareas] = useState([]);
   const [showComplete, setShowComplete] = useState(false);
   
-    // Función para agregar la tarea a la lista de tareas
+  // Función para agregar la tarea a la lista de tareas
   const enviarTareaALista = (nuevaTarea) => {
     setTareas([...tareas, nuevaTarea]);
   };
 
-
   //Local Storage: 
   useEffect(()=>{
     let data = localStorage.getItem("list-Tasks");
-    
     if(data) {
       setTareas(JSON.parse(data));
     }
-
   },[]);
 
   useEffect(()=>{
