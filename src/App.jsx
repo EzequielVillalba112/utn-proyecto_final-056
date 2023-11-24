@@ -55,9 +55,8 @@ const App = () => {
       </div>
       <div className="mx-auto col-12 p-2 bg-light rounded-2">
        <ListTaskComplete showComplete={showComplete} setShowComplete={setShowComplete} deleTask = {deleTask}/>
-      
         {
-          showComplete== true &&(
+          showComplete == true &&(
             <div className="mx-auto col-12 bg-light rounded-2">
               <ListTask tareas={tareas}  checkList={checkList} estate={showComplete}/>
             </div>
