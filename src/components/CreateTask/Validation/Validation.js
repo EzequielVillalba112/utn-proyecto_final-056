@@ -22,6 +22,7 @@ export const ValidEmpty = (title, description) => {
 };
 
 export const CheckDates = (dateStart, dateEnd) => {
+  //NO se debe utilizar var para definir variables.
   var now = new Date();
   var year = now.getFullYear();
   var month = now.getMonth() + 1; // Los meses en JavaScript comienzan desde 0

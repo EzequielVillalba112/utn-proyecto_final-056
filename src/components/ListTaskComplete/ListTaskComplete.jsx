@@ -1,11 +1,14 @@
-export default function ListTaskComplete({showComplete,setShowComplete, deleTask }) {
-
+export default function ListTaskComplete({
+  showComplete,
+  setShowComplete,
+  deleTask,
+}) {
   const handleDelete = () => {
-    if(window.confirm("¿Estas seguro/a de eliminar las tareas?")){
+    if (window.confirm("¿Estas seguro/a de eliminar las tareas?")) {
       deleTask();
     }
-  }
-  
+  };
+
   return (
     <div className="form-check form-switch d-flex justify-content-between ">
       <input
@@ -13,12 +16,14 @@ export default function ListTaskComplete({showComplete,setShowComplete, deleTask
         type="checkbox"
         role="switch"
         id="flexSwitchCheckChecked"
-        onChange={(e)=> setShowComplete(e.target.checked)}
+        onChange={(e) => setShowComplete(e.target.checked)}
         checked={showComplete}
       />
       <label>Ver tareas hechas</label>
 
-      <button type="button" onClick={handleDelete} className="btn btn-danger">Eliminar</button>
+      <button type="button" onClick={handleDelete} className="btn btn-danger">
+        Eliminar
+      </button>
     </div>
   );
 }

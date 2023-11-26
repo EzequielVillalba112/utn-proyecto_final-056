@@ -2,17 +2,17 @@ const ItemTask = ({ tarea, taskCheck }) => {
   return (
     <tr className="ps-2 ">
       <th scope="row">
-          <p className='text-center'>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              checked={tarea.estado}
-              onChange={()=>{
-                taskCheck(tarea)
-              }}
-            />
-          </p>
-        </th>
+        <p className="text-center">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            checked={tarea.estado}
+            onChange={() => {
+              taskCheck(tarea);
+            }}
+          />
+        </p>
+      </th>
       <td name="titulo-cell">
         <p>{tarea.nombre}</p>
       </td>
@@ -28,7 +28,6 @@ const ItemTask = ({ tarea, taskCheck }) => {
       <td name="estado-cell">
         <p>{tarea.estado == true ? "Completo" : "Completar"}</p>
       </td>
-      
     </tr>
   );
 };

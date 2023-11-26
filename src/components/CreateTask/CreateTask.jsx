@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import {ValidEmpty,CheckDates} from './Validation/Validation'
+import React, { useState } from "react";
+import { ValidEmpty, CheckDates } from "./Validation/Validation";
 
 const CreateTask = ({ enviarTareaALista }) => {
-
   const [tarea, setTarea] = useState({
-    nombre: '',
-    fechaInicio: '',
-    fechaFin: '',
-    descripcion: '',
-    estado: false
+    nombre: "",
+    fechaInicio: "",
+    fechaFin: "",
+    descripcion: "",
+    estado: false,
   });
-  
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setTarea({ ...tarea,[name]: value});
+    setTarea({ ...tarea, [name]: value });
   };
 
   const handleEnviarTarea = (event) => {
@@ -21,29 +20,31 @@ const CreateTask = ({ enviarTareaALista }) => {
 
     const valid = ValidEmpty(tarea.name, tarea.descripcion);
     const date = CheckDates(tarea.fechaInicio, tarea.fechaFin);
-
-    if(valid == true && date == true) {
+    //pueden usar el valor truthy 
+    if (valid == true && date == true) {
       enviarTareaALista(tarea);
-     
+
       setTarea({
-        nombre: '',
-        fechaInicio: '',
-        fechaFin: '',
-        descripcion: '',
-        estado:false
+        nombre: "",
+        fechaInicio: "",
+        fechaFin: "",
+        descripcion: "",
+        estado: false,
       });
     }
   };
 
   return (
     <div className="row justify-content-center d-flex">
-      <div className='mx-auto col-12 bg-light rounded-2'>
+      <div className="mx-auto col-12 bg-light rounded-2">
         <h3 className="text-center">Crear Tarea</h3>
       </div>
       <form onSubmit={handleEnviarTarea}>
         <div className="row justify-content-center d-flex">
           <div className="mb-3">
-          <label className="form-label" htmlFor="titulo_tarea">Titulo</label>
+            <label className="form-label" htmlFor="titulo_tarea">
+              Titulo
+            </label>
             <input
               type="text"
               className="form-control"
@@ -57,7 +58,9 @@ const CreateTask = ({ enviarTareaALista }) => {
         </div>
         <div className="row justify-content-center d-flex">
           <div className="mb-3">
-          <label className="form-label" htmlFor="descripcion_tarea">Descricpion</label>
+            <label className="form-label" htmlFor="descripcion_tarea">
+              Descricpion
+            </label>
             <textarea
               className="form-control"
               placeholder="Descripcion de la tarea"
@@ -76,7 +79,7 @@ const CreateTask = ({ enviarTareaALista }) => {
               name="fechaInicio"
               value={tarea.fechaInicio}
               onChange={handleInputChange}
-              id='date-start'
+              id="date-start"
             />
             <span className="input-group-text">Hasta</span>
             <input
@@ -85,7 +88,7 @@ const CreateTask = ({ enviarTareaALista }) => {
               name="fechaFin"
               value={tarea.fechaFin}
               onChange={handleInputChange}
-              id='date-end'
+              id="date-end"
             />
           </div>
         </div>
