@@ -9,6 +9,21 @@ import "../src/assets/css/demoInterfaz.css";
 const App = () => {
   const [tareas, setTareas] = useState([]);
   const [showComplete, setShowComplete] = useState(false);
+  const [valorAleatorio, setValorAleatorio] = useState(null);
+
+  console.log(valorAleatorio);
+
+
+  useEffect(() => {
+    fetch('https://biblioteprueba1.000webhostapp.com/index/index.php', {
+      method: 'GET',
+      mode: 'cors',
+    })
+      .then(response => response.json())
+      .then(data => setValorAleatorio(data.valorAleatorio))
+      .catch(error => console.error('Error:', error));
+  }, []);
+
 
   // Función para agregar la tarea a la lista de tareas
   const enviarTareaALista = (nuevaTarea) => {
@@ -40,6 +55,9 @@ const App = () => {
     setTareas(tareas.filter((tas) => !tas.estado));
     setShowComplete(false);
   };
+
+
+
 
   return (
     <div className="container">
